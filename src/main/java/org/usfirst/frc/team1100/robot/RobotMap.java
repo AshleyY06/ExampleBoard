@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 package org.usfirst.frc.team1100.robot;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SPI.Port;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -140,5 +142,8 @@ public class RobotMap {
 	
 	//[L]ight switches
 	public static final int L_SWITCH = DIO_9;
+
+	//[N]avigation
+	public static final Port N_NAVX = SPI.Port.kMXP;
 
 }

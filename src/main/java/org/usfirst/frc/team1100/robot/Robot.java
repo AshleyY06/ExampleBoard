@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1100.robot.commands.Beat;
 import org.usfirst.frc.team1100.robot.commands.Beat2;
 import org.usfirst.frc.team1100.robot.commands.Beat3;
+import org.usfirst.frc.team1100.robot.commands.ChangeHeading;
 import org.usfirst.frc.team1100.robot.commands.CloseValve;
 import org.usfirst.frc.team1100.robot.commands.DefaultLightSwitch;
 import org.usfirst.frc.team1100.robot.commands.ExampleCommand;
@@ -27,6 +28,7 @@ import org.usfirst.frc.team1100.robot.commands.SpinRightMotorCounterclockwiseFas
 import org.usfirst.frc.team1100.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team1100.robot.subsystems.LeftMotor;
 import org.usfirst.frc.team1100.robot.subsystems.LightSwitch;
+import org.usfirst.frc.team1100.robot.subsystems.Navigation;
 import org.usfirst.frc.team1100.robot.subsystems.Piston;
 import org.usfirst.frc.team1100.robot.subsystems.RightMotor;
 
@@ -75,7 +77,10 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Beat", new Beat());
 		SmartDashboard.putData("Beat2", new Beat2());
 		SmartDashboard.putData("Beat3", new Beat3());
+		SmartDashboard.putData("ChangeHeading", new ChangeHeading(0,0.5));
+		SmartDashboard.putData("Navigation", Navigation.getInstance().getNavX());
 		SmartDashboard.putNumber("num_beats", 5);
+		SmartDashboard.putNumber("yaw", Navigation.getInstance().getNavX().getYaw());
 		SmartDashboard.putNumber("l_motor_speed", 0.5);
 
 		table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -157,6 +162,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Ty", ty.getDouble(0));
 		SmartDashboard.putNumber("Ta", ta.getDouble(0));
 		SmartDashboard.putBoolean("Lswitch", lswitch.get());
+		SmartDashboard.putNumber("yaw", Navigation.getInstance().getNavX().getYaw());
 		Scheduler.getInstance().run();
 	}
 
