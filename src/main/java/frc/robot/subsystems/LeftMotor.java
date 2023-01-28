@@ -1,23 +1,23 @@
-package org.usfirst.frc.team1100.robot.subsystems;
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 
-import org.usfirst.frc.team1100.robot.RobotMap;
+package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 
-/**
- *
- */
-public class LeftMotor extends Subsystem {
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	private static LeftMotor leftMotor;
+public class LeftMotor extends SubsystemBase {
+  /** Creates a new LeftMotor. */
+  private static LeftMotor leftMotor;
 	private Talon motor;
 	private Encoder encoder;
+  private AnalogInput potentiometer;
+  public static final double MAX_POTENTIOMETER_VOLTAGE = 5;
 	
 	/*
 	 * Sets up Talon for left motor
@@ -26,7 +26,8 @@ public class LeftMotor extends Subsystem {
 		// Instantiate left motor class
 		motor = new Talon(RobotMap.M_LEFT);
 		encoder = new Encoder(RobotMap.M_LEFT_ENCODER_CW, RobotMap.M_LEFT_ENCODER_CCW);
-	}
+    	potentiometer = new AnalogInput(RobotMap.M_LEFT_POTENTIOMETER);
+  }
 	
 	/**
 	 * Gets the singular instance of the LeftMotor subsystem
@@ -59,9 +60,16 @@ public class LeftMotor extends Subsystem {
 		return encoder;
 	}
 	
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new Spin());
-    }
-    
+	public AnalogInput getPotentiometer() {
+		return potentiometer;
+	}
+	
+	public double getInputSpeed() {
+		return potentiometer.getVoltage() / MAX_POTENTIOMETER_VOLTAGE;
+	}
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
 }

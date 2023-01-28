@@ -1,22 +1,21 @@
-package org.usfirst.frc.team1100.robot.subsystems;
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 
-import org.usfirst.frc.team1100.robot.RobotMap;
+package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 
-/**
- *
- */
-public class RightMotor extends Subsystem {
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	private static RightMotor rightMotor;
+public class RightMotor extends SubsystemBase {
+  /** Creates a new RightMotor. */
+  private static RightMotor rightMotor;
 	private Talon motor;
 	private Encoder encoder;
+
 	
 	/*
 	 * Sets up Talon for right motor
@@ -57,9 +56,10 @@ public class RightMotor extends Subsystem {
 	public Encoder getEncoder() {
 		return encoder;
 	}
-	
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+		
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
 }

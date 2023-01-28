@@ -5,10 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team1100.robot;
+package frc.robot;
+
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SPI.Port;
-
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -16,6 +17,16 @@ import edu.wpi.first.wpilibj.SPI.Port;
  * floating around.
  */
 public class RobotMap {
+  // For example to map the left and right motors, you could define the
+  // following variables to use with your drivetrain subsystem.
+  // public static int leftMotor = 1;
+  // public static int rightMotor = 2;
+
+  // If you are using multiple modules, make sure to define both the port
+  // number and the module. For example you with a rangefinder:
+  // public static int rangefinderPort = 1;
+  // public static int rangefinderModule = 1;
+  //List of all PWM ports
 	private final static int PWM_0 = 0;
 	private final static int PWM_1 = 1;
 	private final static int PWM_2 = 2;
@@ -37,17 +48,70 @@ public class RobotMap {
 	private final static int PWM_MXP_7 = 17;
 	private final static int PWM_MXP_8 = 18;
 	private final static int PWM_MXP_9 = 19;
-	
-	// List of PCM CAN IDs
-	private final static int PCM_CAN = 0;
-	private final static int PCM_CAN_LED = 1;
-	
+
 	// List of Talon SRX CAN IDs
 	private final static int SRX_CAN_0 = 0;
 	private final static int SRX_CAN_1 = 1;
 	private final static int SRX_CAN_2 = 2;
 	private final static int SRX_CAN_3 = 3;
-	
+
+	// List of CAN IDs
+	private final static int CAN_0 = 0; 
+	private final static int CAN_1 = 1; 
+	private final static int CAN_2 = 2; 
+	private final static int CAN_3 = 3; 
+	private final static int CAN_4 = 4; 
+	private final static int CAN_5 = 5;
+	private final static int CAN_6 = 6; 
+	private final static int CAN_7 = 7; 
+	private final static int CAN_8 = 8;
+	private final static int CAN_9 = 9; 
+	private final static int CAN_10 = 10;
+	private final static int CAN_11 = 11;
+	private final static int CAN_12 = 12; 
+	private final static int CAN_13 = 13; 
+	private final static int CAN_14 = 14; 
+	private final static int CAN_15 = 15; 
+	private final static int CAN_16 = 16;
+	private final static int CAN_17 = 17;
+	private final static int CAN_18 = 18; 
+	private final static int CAN_19 = 19; 
+	private final static int CAN_20 = 20; 
+	private final static int CAN_21 = 21;
+	private final static int CAN_22 = 22;
+	private final static int CAN_23 = 23;
+	private final static int CAN_24 = 24; 
+	private final static int CAN_25 = 25; 
+	private final static int CAN_26 = 26; 
+	private final static int CAN_27 = 27; 
+	private final static int CAN_28 = 28; 
+	private final static int CAN_29 = 29; 
+	private final static int CAN_30 = 30; 
+	private final static int CAN_31 = 31; 
+	private final static int CAN_32 = 32; 
+	private final static int CAN_33 = 33; 
+	private final static int CAN_34 = 34; 
+	private final static int CAN_35 = 35; 
+	private final static int CAN_36 = 36; 
+	private final static int CAN_37 = 37; 
+	private final static int CAN_38 = 38; 
+	private final static int CAN_39 = 39; 
+	private final static int CAN_40 = 40; 
+	private final static int CAN_41 = 41; 
+	private final static int CAN_42 = 42; 
+	private final static int CAN_43 = 43; 
+	private final static int CAN_44 = 44; 
+	private final static int CAN_45 = 45; 
+	private final static int CAN_46 = 46; 
+	private final static int CAN_47 = 47; 
+	private final static int CAN_48 = 48; 
+	private final static int CAN_49 = 49; 
+	private final static int CAN_50 = 50; 
+    
+	// List of PCM CAN IDs
+	public final static int PCM_CAN = CAN_16;
+	public final static int PCM_CAN_2 = CAN_18;
+
 	//List of all analog ports
 	private final static int ANALOG_0 = 0;
 	private final static int ANALOG_1 = 1;
@@ -58,13 +122,13 @@ public class RobotMap {
 	private final static int ANALOG_MXP_1 = 5;
 	private final static int ANALOG_MXP_2 = 6;
 	private final static int ANALOG_MXP_3 = 7;
-	
+
 	//List of all relays
 	private final static int RELAY_0 = 0;
 	private final static int RELAY_1 = 1;
 	private final static int RELAY_2 = 2;
 	private final static int RELAY_3 = 3;
-	
+
 	//List of all DIO ports
 	private final static int DIO_0 = 0;
 	private final static int DIO_1 = 1;
@@ -76,6 +140,7 @@ public class RobotMap {
 	private final static int DIO_7 = 7;
 	private final static int DIO_8 = 8;
 	private final static int DIO_9 = 9;
+
 	// see https://www.pdocs.kauailabs.com/navx-mxp/installation/io-expansion/
 	private final static int DIO_MXP_0 = 10;
 	private final static int DIO_MXP_1 = 11;
@@ -87,13 +152,13 @@ public class RobotMap {
 	private final static int DIO_MXP_7 = 21;
 	private final static int DIO_MXP_8 = 22;
 	private final static int DIO_MXP_9 = 23;
-	
+
 	//List of all USB ports
 	private static final int USB_0 = 0;
 	private static final int USB_1 = 1;
 	private static final int USB_2 = 2;
 	private static final int USB_3 = 3;
-	
+
 	// Pneumatic Control Module (PCM) ports
 	private static final int PCM_0 = 0;
 	private static final int PCM_1 = 1;
@@ -103,8 +168,7 @@ public class RobotMap {
 	private static final int PCM_5 = 5;
 	private static final int PCM_6 = 6;
 	private static final int PCM_7 = 7;
-	private static final int PCM_8 = 8;
-	
+
 	//List of all PDP ports
 	private static final int PDP_0 = 0;
 	private static final int PDP_1 = 1;
@@ -134,16 +198,6 @@ public class RobotMap {
 	public static final int M_LEFT_ENCODER_CW = DIO_3;
 	public static final int M_RIGHT_ENCODER_CCW = DIO_0;
 	public static final int M_RIGHT_ENCODER_CW = DIO_1;
+	public static final int M_LEFT_POTENTIOMETER = ANALOG_0;
 	
-	// [P]iston subsystem
-	public static final int P_PISTON = PCM_0;
-	public static final int P_PORT0 = RELAY_0;
-	public static final int P_PORT1 = RELAY_1;
-	
-	//[L]ight switches
-	public static final int L_SWITCH = DIO_9;
-
-	//[N]avigation
-	public static final Port N_NAVX = SPI.Port.kMXP;
-
 }
