@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.testingdashboard.TestingDashboard;
 
 public class LeftMotor extends SubsystemBase {
   /** Creates a new LeftMotor. */
@@ -35,6 +36,9 @@ public class LeftMotor extends SubsystemBase {
 	 */
 	public static LeftMotor getInstance() {
 		if (leftMotor == null) leftMotor = new LeftMotor();
+		
+		TestingDashboard.getInstance().registerSubsystem(leftMotor, "leftMotor");
+		TestingDashboard.getInstance().registerNumber(leftMotor, "Motors", "testMotor", 0);
 		return leftMotor;
 	}
 	

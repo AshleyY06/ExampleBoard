@@ -6,11 +6,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.SpinLeftMotorAnalog;
 import frc.robot.commands.SpinRightMotorAnalog;
 import frc.robot.subsystems.LeftMotor;
 import frc.robot.subsystems.RightMotor;
+import frc.robot.testingdashboard.TestingDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -21,11 +23,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
- 
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    TestingDashboard.getInstance().createTestingDashboard();
 
     LeftMotor.getInstance().setDefaultCommand(new SpinLeftMotorAnalog());
     RightMotor.getInstance().setDefaultCommand(new SpinRightMotorAnalog());
