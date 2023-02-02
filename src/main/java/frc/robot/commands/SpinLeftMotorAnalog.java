@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LeftMotor;
+import frc.robot.testingdashboard.TestingDashboard;
 
 public class SpinLeftMotorAnalog extends CommandBase {
   LeftMotor m_leftMotor;
@@ -19,6 +20,12 @@ public class SpinLeftMotorAnalog extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
+
+  public static void registerWithTestingDashboard() {
+    LeftMotor leftMotor = LeftMotor.getInstance();
+    SpinLeftMotorAnalog cmd = new SpinLeftMotorAnalog();
+    TestingDashboard.getInstance().registerCommand(leftMotor, "Motors", cmd);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

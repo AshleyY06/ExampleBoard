@@ -14,11 +14,11 @@ import frc.robot.testingdashboard.TestingDashboard;
 
 public class LeftMotor extends SubsystemBase {
   /** Creates a new LeftMotor. */
-  private static LeftMotor leftMotor;
+	private static LeftMotor leftMotor;
 	private Talon motor;
 	private Encoder encoder;
-  private AnalogInput potentiometer;
-  public static final double MAX_POTENTIOMETER_VOLTAGE = 5;
+	private AnalogInput potentiometer;
+	public static final double MAX_POTENTIOMETER_VOLTAGE = 5;
 	
 	/*
 	 * Sets up Talon for left motor
@@ -35,10 +35,12 @@ public class LeftMotor extends SubsystemBase {
 	 * @return the singular instance of the LeftMotor subsystem
 	 */
 	public static LeftMotor getInstance() {
-		if (leftMotor == null) leftMotor = new LeftMotor();
-		
-		TestingDashboard.getInstance().registerSubsystem(leftMotor, "leftMotor");
-		TestingDashboard.getInstance().registerNumber(leftMotor, "Motors", "testMotor", 0);
+		if (leftMotor == null) {
+			leftMotor = new LeftMotor();
+			TestingDashboard.getInstance().registerSubsystem(leftMotor, "leftMotor");
+			TestingDashboard.getInstance().registerNumber(leftMotor, "Motors", "testMotor", 0);
+			TestingDashboard.getInstance().registerNumber(leftMotor, "Potentiometer", "testPotentiometer", 0);
+		}
 		return leftMotor;
 	}
 	
@@ -75,5 +77,6 @@ public class LeftMotor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+	TestingDashboard.getInstance().updateNumber(leftMotor, "testPotentiometer", potentiometer.getVoltage()/MAX_POTENTIOMETER_VOLTAGE);
   }
 }

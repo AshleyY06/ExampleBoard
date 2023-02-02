@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.testingdashboard.TestingDashboard;
 
 public class RightMotor extends SubsystemBase {
   /** Creates a new RightMotor. */
@@ -31,7 +32,12 @@ public class RightMotor extends SubsystemBase {
 	 * @return the singular instance of the LeftMotor subsystem
 	 */
 	public static RightMotor getInstance() {
-		if (rightMotor == null) rightMotor = new RightMotor();
+		if (rightMotor == null) {
+			rightMotor = new RightMotor();
+			TestingDashboard.getInstance().registerSubsystem(rightMotor, "RightMotor");
+			TestingDashboard.getInstance().registerNumber(rightMotor, "Motors", "testMotor", 0);
+		}
+		
 		return rightMotor;
 	}
 	
