@@ -216,6 +216,9 @@ public class RobotMap {
 	public static final int M_TURRET_ENCODER_IN = DIO_2;
 	public static final int M_TURRET_ENCODER_OUT = DIO_3;
 
-
-
+	// [C]lock Subsystem
+	public static final int H_HAND_MOTOR = CAN_33;
+	public static final int H_HAND_ENCODER_A = DIO_0;
+	public static final int H_HAND_ENCODER_B = DIO_1;
+	
 }
