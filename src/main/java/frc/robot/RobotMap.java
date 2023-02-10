@@ -194,8 +194,6 @@ public class RobotMap {
 	// [M]otor subsystems
 	public static final int M_LEFT = PWM_1;
 	public static final int M_RIGHT = PWM_0;
-	public static final int M_LEFT_ENCODER_CCW = DIO_6;
-	public static final int M_LEFT_ENCODER_CW = DIO_7;
 	public static final int M_RIGHT_ENCODER_CCW = DIO_0;
 	public static final int M_RIGHT_ENCODER_CW = DIO_1;
 	public static final int M_LEFT_POTENTIOMETER = ANALOG_3;
@@ -209,6 +207,8 @@ public class RobotMap {
 	public static final int M_ELBOW_POT = ANALOG_1;
 	public static final int M_TURRET_POT = ANALOG_2;
 
+	public static final int M_CLOCK_ENCODER_IN = DIO_6;
+	public static final int M_CLOCK_ENCODER_OUT = DIO_7;
 	public static final int M_SHOULDER_ENCODER_IN = DIO_4; 
 	public static final int M_SHOULDER_ENCODER_OUT = DIO_5; 
 	public static final int M_ELBOW_ENCODER_IN = DIO_8;

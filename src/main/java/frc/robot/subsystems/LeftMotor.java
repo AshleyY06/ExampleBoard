@@ -26,7 +26,7 @@ public class LeftMotor extends SubsystemBase {
 	private LeftMotor() {
 		// Instantiate left motor class
 		motor = new Talon(RobotMap.M_LEFT);
-		encoder = new Encoder(RobotMap.M_LEFT_ENCODER_CW, RobotMap.M_LEFT_ENCODER_CCW);
+		//encoder = new Encoder(RobotMap.M_LEFT_ENCODER_CW, RobotMap.M_LEFT_ENCODER_CCW);
     	potentiometer = new AnalogInput(RobotMap.M_LEFT_POTENTIOMETER);
   }
 	
