@@ -34,6 +34,7 @@ public class Clock extends SubsystemBase {
       TestingDashboard.getInstance().registerNumber(m_clock, "Motors", "HandSpeed", .2);
       TestingDashboard.getInstance().registerNumber(m_clock, "Encoders", "HandEncoderPulses", 0);
       TestingDashboard.getInstance().registerNumber(m_clock, "EncoderAngles", "HandAngle_E", 0);
+      TestingDashboard.getInstance().registerNumber(m_clock, "Inputs", "TargetAngle", 0);
     
     }
     return m_clock;

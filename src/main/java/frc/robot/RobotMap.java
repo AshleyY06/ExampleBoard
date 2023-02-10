@@ -196,8 +196,6 @@ public class RobotMap {
 	public static final int M_RIGHT = PWM_0;
 	public static final int M_LEFT_ENCODER_CCW = DIO_6;
 	public static final int M_LEFT_ENCODER_CW = DIO_7;
-	public static final int M_RIGHT_ENCODER_CCW = DIO_0;
-	public static final int M_RIGHT_ENCODER_CW = DIO_1;
 	public static final int M_LEFT_POTENTIOMETER = ANALOG_3;
 
 	//[A]rm subsystem 
@@ -217,7 +215,7 @@ public class RobotMap {
 	public static final int M_TURRET_ENCODER_OUT = DIO_3;
 
 	// [C]lock Subsystem
-	public static final int H_HAND_MOTOR = CAN_33;
+	public static final int H_HAND_MOTOR = CAN_43;
 	public static final int H_HAND_ENCODER_A = DIO_0;
 	public static final int H_HAND_ENCODER_B = DIO_1;
 	
