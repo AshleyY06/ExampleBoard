@@ -9,21 +9,27 @@ import frc.robot.subsystems.Clock;
 import frc.robot.testingdashboard.TestingDashboard;
 
 public class TurnToAngle extends CommandBase {
+  Clock m_clock;
+  double m_targetAngle;
   /** Creates a new TurnToAngle. */
   public TurnToAngle() {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_clock = Clock.getInstance();
+    addRequirements(m_clock);
+    m_targetAngle = 0;
   }
-
+  
   public static void registerWithTestingDashboard() {
     Clock clock = Clock.getInstance();
     TurnToAngle cmd = new TurnToAngle();
-    TestingDashboard.getInstance().registerCommand(clock, "PIDRotateArm", cmd);
-
+    TestingDashboard.getInstance().registerCommand(clock, "Basic", cmd);
   }
-  
+
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_targetAngle = TestingDashboard.getInstance().getNumber(m_clock, "TargetAngle");
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
