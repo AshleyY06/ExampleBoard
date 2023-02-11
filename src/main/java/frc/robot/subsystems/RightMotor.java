@@ -24,7 +24,7 @@ public class RightMotor extends SubsystemBase {
 	private RightMotor() {
 		// Instantiate left motor class
 		motor = new Talon(RobotMap.M_RIGHT);
-		encoder = new Encoder(RobotMap.M_RIGHT_ENCODER_CW, RobotMap.M_RIGHT_ENCODER_CCW);
+	
 	}
 	
 	/**
@@ -55,13 +55,8 @@ public class RightMotor extends SubsystemBase {
 		motor.set(speed);
 	}
 	
-	public int getRotations() {
-		return encoder.get();
-	}
+
 	
-	public Encoder getEncoder() {
-		return encoder;
-	}
 		
 
   @Override

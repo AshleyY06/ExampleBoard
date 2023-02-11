@@ -12,6 +12,7 @@ import frc.robot.commands.SpinLeftMotorAnalog;
 import frc.robot.commands.SpinRightMotorAnalog;
 import frc.robot.commands.Arm.ArmMotor;
 import frc.robot.commands.Arm.RotateElbowToAngle;
+import frc.robot.commands.Clock.TurnToAngle;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.LeftMotor;
 import frc.robot.subsystems.RightMotor;
@@ -36,6 +37,7 @@ public class RobotContainer {
     SpinRightMotorAnalog.registerWithTestingDashboard();
     ArmMotor.registerWithTestingDashboard();
     RotateElbowToAngle.registerWithTestingDashboard();
+    TurnToAngle.registerWithTestingDashboard();
 
     LeftMotor.getInstance().setDefaultCommand(new SpinLeftMotorAnalog());
     RightMotor.getInstance().setDefaultCommand(new SpinRightMotorAnalog());
