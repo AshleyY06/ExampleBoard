@@ -46,7 +46,6 @@ public class Arm extends SubsystemBase {
     m_shoulderEncoder = new Encoder(RobotMap.M_SHOULDER_ENCODER_IN, RobotMap.M_SHOULDER_ENCODER_OUT);
     m_elbowEncoder = new Encoder(RobotMap.M_ELBOW_ENCODER_IN, RobotMap.M_ELBOW_ENCODER_OUT);
     m_turretEncoder = new Encoder(RobotMap.M_TURRET_ENCODER_IN, RobotMap.M_TURRET_ENCODER_OUT);
-    m_clockEncoder = new Encoder(RobotMap.M_CLOCK_ENCODER_IN, RobotMap.M_CLOCK_ENCODER_OUT);
 
     m_elbowPot = new AnalogInput(RobotMap.M_ELBOW_POT);
     m_shoulderPot = new AnalogInput(RobotMap.M_SHOULDER_POT);
@@ -86,6 +85,8 @@ public class Arm extends SubsystemBase {
       TestingDashboard.getInstance().registerNumber(m_arm, "AngleDiff", "TurretAngle_Diff", 0);
 
       TestingDashboard.getInstance().registerNumber(m_arm, "RotationAngles", "ElbowAngle", 0);
+      TestingDashboard.getInstance().registerNumber(m_arm, "RotationAngles", "PIDElbowSetPoint", 90);
+
     }
     return m_arm;
   }
@@ -103,6 +104,11 @@ public class Arm extends SubsystemBase {
     m_elbow.setVoltage(voltage);
   }
 
+  public double getElbowAngle() {
+    double angle = m_elbowPot.getVoltage() / 0.0164;
+    return angle;
+  }
+ 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

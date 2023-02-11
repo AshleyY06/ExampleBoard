@@ -36,7 +36,6 @@ public class PIDRotateElbowToAngle extends PIDCommand {
     PIDRotateElbowToAngle cmd = new PIDRotateElbowToAngle();
     TestingDashboard.getInstance().registerCommand(arm, "PIDRotateArm", cmd);
     TestingDashboard.getInstance().registerSendable(arm, "RotationAngles", "ElbowPIDController", cmd.getController());
-
   }
 
   // Returns true when the command should end.
