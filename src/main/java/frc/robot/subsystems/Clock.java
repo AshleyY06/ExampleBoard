@@ -51,6 +51,6 @@ public class Clock extends SubsystemBase {
     double HandAngle_E = (m_handEncoder.get() * 1.286) + m_handOffset;  
     TestingDashboard.getInstance().updateNumber(m_clock, "HandEncoderPulses", m_handEncoder.get());
     TestingDashboard.getInstance().updateNumber(m_clock, "HandAngle_E", HandAngle_E);
-    TestingDashboard.getInstance().updateNumber(m_clock, "HandSpeed", m_handMotor.get());
+    // TestingDashboard.getInstance().updateNumber(m_clock, "HandSpeed", m_handMotor.get());
   }
 }

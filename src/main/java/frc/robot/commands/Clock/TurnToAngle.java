@@ -10,6 +10,7 @@ import frc.robot.testingdashboard.TestingDashboard;
 
 public class TurnToAngle extends CommandBase {
   Clock m_clock;
+  
   double m_targetAngle;
   /** Creates a new TurnToAngle. */
   public TurnToAngle() {
@@ -33,11 +34,16 @@ public class TurnToAngle extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double speed = TestingDashboard.getInstance().getNumber(m_clock, "HandSpeed");
+    m_clock.setHandSpeed(speed);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_clock.setHandSpeed(0);
+  }
 
   // Returns true when the command should end.
   @Override
