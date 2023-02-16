@@ -28,6 +28,7 @@ public class PIDTurnClock extends PIDCommand {
           // Use the output here
         });
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Clock.getInstance());
     // Configure additional PID options by calling `getController` here.
   }
 
