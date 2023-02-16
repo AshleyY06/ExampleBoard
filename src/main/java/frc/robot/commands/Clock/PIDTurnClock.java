@@ -17,14 +17,14 @@ public class PIDTurnClock extends PIDCommand {
   public PIDTurnClock() {
     super(
         // The controller that the command will use
-        new PIDController(0.1, 0.1, 0),
+        new PIDController(0.05, 0.005, 0),
         // This should return the measurement
-        () -> TestingDashboard.getInstance().getNumber(Clock.getInstance(), "HandAngle_E"),
+        () -> Clock.getInstance().getHandAngle(),
         // This should return the setpoint (can also be a constant)
         () -> TestingDashboard.getInstance().getNumber(Clock.getInstance(), "TargetAngle"),
         // This uses the output
         output -> {
-          Clock.getInstance().setHandSpeed(output);
+          Clock.getInstance().setHandSpeed(-output);
           // Use the output here
         });
     // Use addRequirements() here to declare subsystem dependencies.

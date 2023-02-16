@@ -45,6 +45,10 @@ public class Clock extends SubsystemBase {
     m_handMotor.set(handSpeed);
   }
 
+  public double getHandAngle() {
+    return (m_handEncoder.get() * .857) + m_handOffset;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
