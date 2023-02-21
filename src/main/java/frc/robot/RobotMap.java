@@ -199,7 +199,7 @@ public class RobotMap {
 	public static final int M_LEFT_POTENTIOMETER = ANALOG_3;
 
 	//[A]rm subsystem 
-	public static final int M_ELBOW_MOTOR = CAN_31;
+	public static final int M_ELBOW_MOTOR = CAN_33;
 	public static final int m_SHOULDER_MOTOR = CAN_32;
 	public static final int M_TURRET_MOTOR = CAN_8;
 
@@ -215,7 +215,7 @@ public class RobotMap {
 	public static final int M_TURRET_ENCODER_OUT = DIO_3;
 
 	// [C]lock Subsystem
-	public static final int H_HAND_MOTOR = CAN_33;
+	public static final int H_HAND_MOTOR = CAN_31;
 	public static final int H_HAND_ENCODER_A = DIO_6;
 	public static final int H_HAND_ENCODER_B = DIO_7;
 	

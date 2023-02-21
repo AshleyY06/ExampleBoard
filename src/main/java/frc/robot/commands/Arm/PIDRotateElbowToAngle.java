@@ -17,11 +17,11 @@ public class PIDRotateElbowToAngle extends PIDCommand {
   public PIDRotateElbowToAngle() {
     super(
         // The controller that the command will use
-        new PIDController(0.001, 0.001, 0),
+        new PIDController(0.01, 0.005, 0),
         // This should return the measurement
         () -> Arm.getInstance().getElbowAngle(),
         // This should return the setpoint (can also be a constant)
-        () -> TestingDashboard.getInstance().getNumber(Arm.getInstance(), "PIDElbowSetPoint"),
+        () -> TestingDashboard.getInstance().getNumber(Arm.getInstance(), "ElbowTargetAngle"),
         // This uses the output
         output -> {
           // Use the output here

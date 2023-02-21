@@ -40,8 +40,8 @@ public class Arm extends SubsystemBase {
   /** Creates a new Arm. */
   public Arm() {
     m_elbow = new CANSparkMax(RobotMap.M_ELBOW_MOTOR, MotorType.kBrushed);
-    m_shoulder = new CANSparkMax(RobotMap.m_SHOULDER_MOTOR, MotorType.kBrushless);
-    m_turret = new CANSparkMax(RobotMap.M_TURRET_MOTOR, MotorType.kBrushless);
+    m_shoulder = new CANSparkMax(RobotMap.m_SHOULDER_MOTOR, MotorType.kBrushed);
+    m_turret = new CANSparkMax(RobotMap.M_TURRET_MOTOR, MotorType.kBrushed);
 
     m_shoulderEncoder = new Encoder(RobotMap.M_SHOULDER_ENCODER_IN, RobotMap.M_SHOULDER_ENCODER_OUT);
     m_elbowEncoder = new Encoder(RobotMap.M_ELBOW_ENCODER_IN, RobotMap.M_ELBOW_ENCODER_OUT);
@@ -85,14 +85,22 @@ public class Arm extends SubsystemBase {
       TestingDashboard.getInstance().registerNumber(m_arm, "AngleDiff", "TurretAngle_Diff", 0);
 
       TestingDashboard.getInstance().registerNumber(m_arm, "RotationAngles", "ElbowAngle", 0);
-      TestingDashboard.getInstance().registerNumber(m_arm, "RotationAngles", "PIDElbowSetPoint", 90);
+      TestingDashboard.getInstance().registerNumber(m_arm, "RotationAngles", "ElbowTargetAngle", 0);
 
     }
     return m_arm;
   }
 
-  public void setElbowSpeed(double elbowSpeed) {
-    m_elbow.set(elbowSpeed);
+  public void setElbowSpeed(double speed) {
+    m_elbow.set(speed);
+  }
+
+  public void setShoulderSpeed(double speed) {
+    m_shoulder.set(speed);
+  }
+
+  public void setTurretSpeed(double speed) {
+    m_turret.set(speed);
   }
 
   public void rotateElbowToAngle(double radians, double velocity) {
@@ -105,7 +113,7 @@ public class Arm extends SubsystemBase {
   }
 
   public double getElbowAngle() {
-    double angle = m_elbowPot.getVoltage() / 0.0164;
+    double angle = (m_elbowEncoder.get() * 1.286) + elbowOffset;
     return angle;
   }
  
