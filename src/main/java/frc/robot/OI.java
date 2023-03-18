@@ -8,6 +8,8 @@
 package frc.robot;
 
 import frc.robot.Input.XboxController;
+import frc.robot.commands.Lights.ConeLight;
+import frc.robot.commands.Lights.CubeLight;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -37,6 +39,8 @@ public class OI {
     DriverXboxController = new XboxController(0, .1);
     OperatorXboxController = new XboxController(1, .1);
 
+    DriverXboxController.getButtonA().onTrue(new ConeLight());
+    DriverXboxController.getButtonB().onTrue(new CubeLight());
     /* 
     ////////////////////////////////////////////////////
     // Now Mapping Commands to XBox

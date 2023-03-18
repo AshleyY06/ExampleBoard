@@ -16,6 +16,8 @@ import frc.robot.commands.Arm.PIDRotateElbowToAngle;
 import frc.robot.commands.Arm.RotateElbowToAngle;
 import frc.robot.commands.Clock.PIDTurnClock;
 import frc.robot.commands.Clock.TurnToAngle;
+import frc.robot.commands.Lights.ConeLight;
+import frc.robot.commands.Lights.CubeLight;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.LeftMotor;
 import frc.robot.subsystems.RightMotor;
@@ -44,6 +46,8 @@ public class RobotContainer {
     ArmOperatorControl.registerWithTestingDashboard();
     PIDTurnClock.registerWithTestingDashboard();
     TurnToAngle.registerWithTestingDashboard();
+    ConeLight.registerWithTestingDashboard();
+    CubeLight.registerWithTestingDashboard();
 
     LeftMotor.getInstance().setDefaultCommand(new SpinLeftMotorAnalog());
     RightMotor.getInstance().setDefaultCommand(new SpinRightMotorAnalog());

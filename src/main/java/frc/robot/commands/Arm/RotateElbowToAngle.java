@@ -38,7 +38,6 @@ public class RotateElbowToAngle extends CommandBase {
   @Override
   public void execute() {
     m_radians = TestingDashboard.getInstance().getNumber(m_arm, "ElbowAngle");
-    m_arm.rotateElbowToAngle(m_radians, .05);
     System.out.println(finished);
     finished = true;
   }

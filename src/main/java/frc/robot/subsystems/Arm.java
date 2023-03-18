@@ -9,7 +9,9 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ArmFeedforward;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.Constants;
@@ -27,11 +29,16 @@ public class Arm extends SubsystemBase {
   private Encoder m_shoulderEncoder;
   private Encoder m_elbowEncoder;
   private Encoder m_turretEncoder;
-  private Encoder m_clockEncoder;
 
   private AnalogInput m_shoulderPot;
   private AnalogInput m_elbowPot;
   private AnalogInput m_turretPot;
+
+  private PIDController m_elbowPID;
+  private PIDController m_shoulderPID;
+
+  private double m_elbowTargetAngle;
+  private double m_shoulderTargetAngle;
 
   private double elbowOffset;
   private double shoulderOffset;
@@ -50,6 +57,12 @@ public class Arm extends SubsystemBase {
     m_elbowPot = new AnalogInput(RobotMap.M_ELBOW_POT);
     m_shoulderPot = new AnalogInput(RobotMap.M_SHOULDER_POT);
     m_turretPot = new AnalogInput(RobotMap.M_TURRET_POT);
+
+    m_elbowPID = new PIDController(0.01, 0.005, 0);
+    m_shoulderPID = new PIDController(0.001, 0.005, 0);
+
+    m_elbowTargetAngle = 0;
+    m_shoulderTargetAngle = 0;
 
     elbowOffset = m_elbowPot.getVoltage() / 0.0164;
     shoulderOffset = m_shoulderPot.getVoltage() / 0.0136;
@@ -86,6 +99,7 @@ public class Arm extends SubsystemBase {
 
       TestingDashboard.getInstance().registerNumber(m_arm, "RotationAngles", "ElbowAngle", 0);
       TestingDashboard.getInstance().registerNumber(m_arm, "RotationAngles", "ElbowTargetAngle", 0);
+      TestingDashboard.getInstance().registerNumber(m_arm, "RotationAngles", "ShoulderTargetAngle", 0);
 
     }
     return m_arm;
@@ -103,18 +117,35 @@ public class Arm extends SubsystemBase {
     m_turret.set(speed);
   }
 
-  public void rotateElbowToAngle(double radians, double velocity) {
-    ArmFeedforward feedforward = new ArmFeedforward(1, 2, 3);
-    m_elbow.setVoltage(feedforward.calculate(radians, velocity));
-  }
-
   public void setElbowVoltage(double voltage) {
     m_elbow.setVoltage(voltage);
   }
 
   public double getElbowAngle() {
-    double angle = (m_elbowEncoder.get() * 1.286) + elbowOffset;
+    double angle = (m_elbowEncoder.get() * 1.286) + elbowOffset;   
     return angle;
+  }
+
+  public double getShoulderAngle() {
+    double angle = Math.abs((m_shoulderEncoder.get() * 1.286) - shoulderOffset);
+    return angle;
+  }
+
+  public void setElbowAngle(double angle) {
+    m_elbowTargetAngle = angle;
+  }
+
+  public void setShoulderAngle(double angle) {
+    m_shoulderTargetAngle = angle;
+  }
+
+  public void controlJointsWithSoftwarePidControl() {
+    double e_power = m_elbowPID.calculate(getElbowAngle(), m_elbowTargetAngle);
+    double s_power = m_shoulderPID.calculate(getShoulderAngle(), -m_shoulderTargetAngle);
+    e_power = MathUtil.clamp(e_power, -0.4, 0.4);
+    s_power = MathUtil.clamp(s_power, -0.7, 0.7);
+    setElbowSpeed(e_power);
+    setShoulderSpeed(s_power);
   }
  
   @Override
@@ -125,9 +156,9 @@ public class Arm extends SubsystemBase {
     TestingDashboard.getInstance().updateNumber(m_arm, "TurretPotVoltage", m_turretPot.getVoltage());
 
     double elbowAngle_E = (m_elbowEncoder.get() * 1.286) + elbowOffset;        //pulses per degree
-    double shoulderAngle_E = (m_shoulderEncoder.get() * 1.286) - shoulderOffset;
+    double shoulderAngle_E = Math.abs((m_shoulderEncoder.get() * 1.286) - shoulderOffset);
     double turretAngle_E = m_turretEncoder.get() * 1.286;
-
+    
     double elbowAngle_V = m_elbowPot.getVoltage() / 0.0164;
     double shoulderAngle_V = m_shoulderPot.getVoltage() / 0.0136;
     double turretAngle_V = m_turretPot.getVoltage() / 1.286;
@@ -151,13 +182,12 @@ public class Arm extends SubsystemBase {
     TestingDashboard.getInstance().updateNumber(m_arm, "ElbowAngle_Diff", elbowAngle_Diff);
     TestingDashboard.getInstance().updateNumber(m_arm, "ShoulderAngle_Diff", shoulderAngle_Diff);
     TestingDashboard.getInstance().updateNumber(m_arm, "TurretAngle_Diff", turretAngle_Diff);
+
+    TestingDashboard.getInstance().updateNumber(m_arm, "ElbowTargetAngle", m_elbowTargetAngle);
+    TestingDashboard.getInstance().updateNumber(m_arm, "ShoulderTargetAngle", m_shoulderTargetAngle);
+
+
     
   }
 }
 
-class ArmSegment {
-
-  public ArmSegment(double length) {
-
-  }
-}

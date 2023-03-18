@@ -46,9 +46,10 @@ public class ArmOperatorControl extends CommandBase {
     // 0 and 1. Note that 1 / 0.5 == 2, but 1 * 0.5 == 0.5
     
     double e_angle = (m_xbox.getAxis(XboxAxis.kYRight) * 146.75) + 146.75;
-    TestingDashboard.getInstance().updateNumber(m_arm, "ElbowTargetAngle", e_angle);
-    PIDRotateElbowToAngle m_PIDRotateElbowToAngle = new PIDRotateElbowToAngle();
-    m_PIDRotateElbowToAngle.schedule();
+    double s_angle = (m_xbox.getAxis(XboxAxis.kYLeft) * 107.6) + 107.6;
+    Arm.getInstance().setElbowAngle(e_angle);
+    Arm.getInstance().setShoulderAngle(s_angle);
+    Arm.getInstance().controlJointsWithSoftwarePidControl();
     
   }
 

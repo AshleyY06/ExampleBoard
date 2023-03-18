@@ -218,5 +218,10 @@ public class RobotMap {
 	public static final int H_HAND_MOTOR = CAN_31;
 	public static final int H_HAND_ENCODER_A = DIO_6;
 	public static final int H_HAND_ENCODER_B = DIO_7;
+
+	// [L]ights
+	public static final int L_LEFT_LED = DIO_0;
+	public static final int L_RIGHT_LED = DIO_1;
+
 	
 }
